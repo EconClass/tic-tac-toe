@@ -1,6 +1,6 @@
 
 // This helper function decides the winner of the game
-function calculateWinner(squares) {
+const calculateWinner = (squares) => {
   /**
    * This is a list of valid scenarios where a winner can be decided
    * Where each scenario contains indexes to check for values
@@ -31,6 +31,18 @@ function calculateWinner(squares) {
   return null; // Null if it's a tie
 }
 
+const setStatus = (winner, state) => {
+  let status;
+  if (winner) {
+    status = `Winner: ${winner}`;
+  } else {
+    const player = state.xIsNext ? "X" : "O";
+    status = `Next player: ${player}`
+  }
+  return status;
+}
+
 export {
   calculateWinner,
+  setStatus,
 }

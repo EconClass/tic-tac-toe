@@ -1,7 +1,5 @@
 import React, { Component } from "react";
 import Square from "./Square";
-import { calculateWinner } from "./utils/helpers.js"
-
 
 class Board extends Component {
   constructor(props) {
@@ -12,45 +10,18 @@ class Board extends Component {
     };
   };
 
-  handleClick(i) {
-    const squares = this.state.squares.slice();
-
-    // Break when there's a winner or,
-    // if the square already has something
-    if (calculateWinner(squares) || squares[i]) {
-      return;
-    }
-
-    // Put an X or O in the square based on current player 
-    squares[i] = this.state.xIsNext ? "X" : "O";
-    this.setState({
-      squares: squares,
-      xIsNext: !this.state.xIsNext,
-    });
-  }
-
   renderSquare(i) {
     return (
       <Square
-        value={this.state.squares[i]}
-        onClick={() => this.handleClick(i)}
+        value={this.props.squares[i]}
+        onClick={() => this.props.onClick(i)}
       />
     );
   };
 
   render() {
-    const winner = calculateWinner(this.state.squares);
-    let status;
-    if (winner) {
-      status = `Winner: ${winner}`;
-    } else {
-      const player = this.state.xIsNext ? "X" : "O";
-      status = `Next player: ${player}`
-    }
-
     return (
       <div>
-        <div className="status">{status}</div>
         <div className="board-row">
           {this.renderSquare(0)}
           {this.renderSquare(1)}
