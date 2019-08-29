@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Board from "./Board.js";
 import { calculateWinner, setStatus } from "./utils/helpers.js";
+import "./Game.css";
 
 class Game extends Component {
   constructor(props) {

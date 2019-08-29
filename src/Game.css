@@ -1,3 +1,4 @@
-div.game-board {
+.game-board {
+  height: 60%;
   display: flex;
 }
